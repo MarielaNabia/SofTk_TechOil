@@ -4,20 +4,21 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>C:\Users\marie\Desktop\SofTk_TechOil\bin\Debug\net6.0\SofTk_TechOil.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="DataAccess\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Helper\" />
-    <Folder Include="Infrastructure\" />
-    <Folder Include="Services\" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.21" />
+	  <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.21" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.21" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.21">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
 </Project>
