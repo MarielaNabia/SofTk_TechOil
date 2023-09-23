@@ -7,7 +7,7 @@ using SofTk_TechOil.Services;
 
 namespace SofTk_TechOil.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {

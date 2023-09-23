@@ -17,6 +17,12 @@ namespace SofTk_TechOil.DataAccess.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
+        public virtual async Task<T> GetById(int id)
+        {
+            return await _context.Set<T>().FindAsync(id);
+        }
+
+
         public virtual async Task<bool> Insert(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
