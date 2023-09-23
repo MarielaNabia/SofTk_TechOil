@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SofTk_TechOil.DataAccess;
 
@@ -11,9 +12,10 @@ using SofTk_TechOil.DataAccess;
 namespace SofTk_TechOil.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230923154332_entity Proyecto-Servicio-trabajos")]
+    partial class entityProyectoServiciotrabajos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,7 +76,7 @@ namespace SofTk_TechOil.Migrations
                             CodProyecto = 1,
                             CodServicio = 2,
                             Costo = 2600000m,
-                            Fecha = new DateTime(2023, 9, 23, 12, 46, 58, 541, DateTimeKind.Local).AddTicks(9464),
+                            Fecha = new DateTime(2023, 9, 23, 12, 43, 32, 561, DateTimeKind.Local).AddTicks(4929),
                             ValorHora = 260m
                         });
                 });
