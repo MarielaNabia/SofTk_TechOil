@@ -15,7 +15,7 @@ namespace SofTk_TechOil.DataAccess
         public DbSet<Job> Jobs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {           
 
             var seeders = new List<IEntitySeeder>
             {

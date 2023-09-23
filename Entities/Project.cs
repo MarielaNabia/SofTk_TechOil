@@ -45,7 +45,7 @@ namespace SofTk_TechOil.Entities
         [Required]
         public bool Activo { get; set; }
 
-       
+        public virtual ICollection<Job> Jobs { get; set; }
     }
     public enum EstadoTrabajo
     {

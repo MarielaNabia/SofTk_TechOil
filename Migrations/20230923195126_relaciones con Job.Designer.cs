@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SofTk_TechOil.DataAccess;
 
@@ -11,9 +12,10 @@ using SofTk_TechOil.DataAccess;
 namespace SofTk_TechOil.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230923195126_relaciones con Job")]
+    partial class relacionesconJob
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,14 +47,20 @@ namespace SofTk_TechOil.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ProjectCodProyecto")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ServiceCodServicio")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("ValorHora")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("CodTrabajo");
 
-                    b.HasIndex("CodProyecto");
+                    b.HasIndex("ProjectCodProyecto");
 
-                    b.HasIndex("CodServicio");
+                    b.HasIndex("ServiceCodServicio");
 
                     b.ToTable("Jobs");
 
@@ -64,7 +72,7 @@ namespace SofTk_TechOil.Migrations
                             CantHoras = 10000,
                             CodProyecto = 1,
                             CodServicio = 2,
-                            Fecha = new DateTime(2023, 9, 23, 17, 1, 31, 82, DateTimeKind.Local).AddTicks(1061),
+                            Fecha = new DateTime(2023, 9, 23, 16, 51, 25, 867, DateTimeKind.Local).AddTicks(3994),
                             ValorHora = 260m
                         });
                 });
@@ -277,15 +285,11 @@ namespace SofTk_TechOil.Migrations
                 {
                     b.HasOne("SofTk_TechOil.Entities.Project", "Project")
                         .WithMany("Jobs")
-                        .HasForeignKey("CodProyecto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProjectCodProyecto");
 
                     b.HasOne("SofTk_TechOil.Entities.Service", "Service")
                         .WithMany("Jobs")
-                        .HasForeignKey("CodServicio")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ServiceCodServicio");
 
                     b.Navigation("Project");
 

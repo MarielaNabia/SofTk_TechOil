@@ -10,6 +10,7 @@ namespace SofTk_TechOil.Services
         public RoleRepository RoleRepository { get; private set; }
         public ServiceRepository ServiceRepository { get; private set; }
         public ProjectRepository ProjectRepository { get; private set; }
+        public JobRepository JobRepository { get; private set; }
 
         public UnitOfWorkService(AppDbContext context)
         {
@@ -18,6 +19,7 @@ namespace SofTk_TechOil.Services
             RoleRepository = new RoleRepository(_context);
             ServiceRepository = new ServiceRepository(_context);
             ProjectRepository = new ProjectRepository(_context);
+            JobRepository = new JobRepository(_context);
         }
 
         public Task<int> Complete()
