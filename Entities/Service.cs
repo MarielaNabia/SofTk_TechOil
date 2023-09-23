@@ -1,10 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SofTk_TechOil.DTOs;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SofTk_TechOil.Entities
 {
     public class Service
     {
+        public Service()
+        {
+        }
+        public Service(AddServiceDto dto)
+        {
+            Descripcion = dto.Descripcion;
+            Estado = dto.Estado;
+            ValorHora = dto.ValorHora;
+            Activo = true;
+        }
+        public Service(AddServiceDto dto, int codServicio)
+        {
+            CodServicio = codServicio;
+            Descripcion = dto.Descripcion;
+            Estado = dto.Estado;
+            ValorHora = dto.ValorHora;
+            Activo = dto.Activo;
+        }
+
         [Key]      
         public int CodServicio { get; set; }
 

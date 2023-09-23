@@ -6,6 +6,7 @@ namespace SofTk_TechOil.Services
     {
         public UserRepository UserRepository { get; }
         public RoleRepository RoleRepository { get; }
+        public ServiceRepository ServiceRepository { get; }
         Task<int> Complete();
     }
 }
