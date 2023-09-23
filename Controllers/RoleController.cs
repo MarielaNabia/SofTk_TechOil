@@ -24,7 +24,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <returns>devuelde todos los roles</returns>
         [HttpGet]
-
+        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var roles = await _unitOfWork.RoleRepository.GetAll();
@@ -43,6 +43,7 @@ namespace SofTk_TechOil.Controllers
         /// <returns>Devuelve un mensaje de confirmacion del agrego del rol</returns>
         [Authorize(Policy = "Admin")]
         [HttpPost]
+        [Route("Alta")]
         public async Task<IActionResult> Insert(RoleDto dto)
         {
 
@@ -57,10 +58,8 @@ namespace SofTk_TechOil.Controllers
         ///  Actualiza un rol
         /// </summary>
         /// <returns>Devuelve un mensaje de actualizacion de rol</returns>
-
         [Authorize(Policy = "Admin")]
-        [HttpPut("{id}")]
-
+        [HttpPut("Modificar/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, Role role)
         {
             var result = await _unitOfWork.RoleRepository.Update(role);
@@ -74,7 +73,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <returns>Devuelve un mensaje de eliminacion de rol</returns>
         [Authorize(Policy = "Admin")]
-        [HttpDelete("{id}")]
+        [HttpPut("Eliminar/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var result = await _unitOfWork.RoleRepository.Delete(id);

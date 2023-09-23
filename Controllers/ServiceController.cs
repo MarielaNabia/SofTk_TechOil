@@ -23,7 +23,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <returns>Una respuesta HTTP que contiene la lista de servicios paginada.</returns>
         [HttpGet]
-        [Route("Service")]
+        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -50,7 +50,7 @@ namespace SofTk_TechOil.Controllers
         /// <returns>Una respuesta HTTP que contiene la lista de servicios activos.</returns>
 
         [HttpGet]
-        [Route("ServiceActive")]
+        [Route("GetActive")]
         public async Task<IActionResult> GetActiveServices()
         {
             try
@@ -71,7 +71,7 @@ namespace SofTk_TechOil.Controllers
         /// <param name="id">ID del servicio a obtener.</param>
         /// <returns>Una respuesta HTTP que contiene el servicio encontrado o un mensaje de not found.</returns>
 
-        [HttpGet("ServiceById/{id}")]
+        [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             try
@@ -97,9 +97,9 @@ namespace SofTk_TechOil.Controllers
         /// <param name="dto">Datos del nuevo servicio.</param>
         /// <returns>Una respuesta HTTP que indica el resultado de la operación.</returns>
 
-        //[Authorize(Policy = "Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpPost]
-        [Route("NewService")]
+        [Route("Alta")]
         public async Task<IActionResult> NewService(AddServiceDto dto)
         {
             try
@@ -122,8 +122,8 @@ namespace SofTk_TechOil.Controllers
         /// <param name="id">ID del servicio a actualizar.</param>
         /// <param name="dto">Datos del servicio actualizado.</param>
         /// <returns>Una respuesta HTTP que indica el resultado de la operación.</returns>
-        //[Authorize(Policy = "Admin")]
-        [HttpPut("Editar/{id}")]
+        [Authorize(Policy = "Admin")]
+        [HttpPut("Modificar/{id}")]
         public async Task<IActionResult> UpdateAsync([FromRoute] int id, AddServiceDto dto)
         {
             try
@@ -156,7 +156,7 @@ namespace SofTk_TechOil.Controllers
         /// <param name="id">ID del servicio a eliminar.</param>
         /// <returns>Una respuesta HTTP que indica el resultado de la operación.</returns>
         [Authorize(Policy = "Admin")]
-        [HttpPut("DeleteLogico/{id}")]
+        [HttpPut("Eliminar/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try

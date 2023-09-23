@@ -25,7 +25,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <returns>Una respuesta HTTP que contiene la lista de trabajos paginada.</returns>
         [HttpGet]
-        [Route("Job")]
+        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -69,7 +69,7 @@ namespace SofTk_TechOil.Controllers
         /// <param name="id">ID del trabajo a obtener.</param>
         /// <returns>Una respuesta HTTP que contiene el trabajo encontrado o un mensaje de not found.</returns>
 
-        [HttpGet("JobById/{id}")]
+        [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             try
@@ -95,9 +95,9 @@ namespace SofTk_TechOil.Controllers
         /// <param name="dto">Datos del nuevo trabajo.</param>
         /// <returns>Una respuesta HTTP que indica el resultado de la operación.</returns>
 
-        //[Authorize(Policy = "Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpPost]
-        [Route("NewTrabajo")]
+        [Route("Alta")]
         public async Task<IActionResult> CreateAsync(AddJobDto dto)
         {
             try
@@ -120,8 +120,8 @@ namespace SofTk_TechOil.Controllers
         /// <param name="id">ID del trabajo a actualizar.</param>
         /// <param name="dto">Datos del trabajo actualizado.</param>
         /// <returns>Una respuesta HTTP que indica el resultado de la operación.</returns>
-        //[Authorize(Policy = "Admin")]
-        [HttpPut("Editar/{id}")]
+        [Authorize(Policy = "Admin")]
+        [HttpPut("Modificar/{id}")]
         public async Task<IActionResult> UpdateAsync([FromRoute] int id, AddJobDto dto)
         {
             try
@@ -154,7 +154,7 @@ namespace SofTk_TechOil.Controllers
         /// <param name="id">ID del trabajo a eliminar.</param>
         /// <returns>Una respuesta HTTP que indica el resultado de la operación.</returns>
         [Authorize(Policy = "Admin")]
-        [HttpPut("DeleteLogico/{id}")]
+        [HttpPut("Eliminar/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try

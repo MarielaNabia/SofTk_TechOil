@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using SofTk_TechOil.DataAccess;
 using SofTk_TechOil.Services;
 using System.Reflection;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,24 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
                            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy("Admin", policy =>
+
+    {
+        policy.RequireClaim(ClaimTypes.Role, "1");
+    });
+
+
+    option.AddPolicy("AdminConsultor", policy =>
+
+    {
+        policy.RequireClaim(ClaimTypes.Role, "1");
+        policy.RequireClaim(ClaimTypes.Role, "2");
+
+    });
+});
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

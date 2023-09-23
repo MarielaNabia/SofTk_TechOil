@@ -25,6 +25,7 @@ namespace SofTk_TechOil.Controllers
         /// <returns>retorna todos los usuarios</returns>
 
         [HttpGet]
+        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var users = await _unitOfWork.UserRepository.GetAll();
@@ -44,7 +45,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <param name="id">El ID del usuario a obtener.</param>
         /// <returns>El usuario encontrado.</returns>
-        [HttpGet("{id}")]
+        [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var user = await _unitOfWork.UserRepository.GetById(id);
@@ -65,6 +66,7 @@ namespace SofTk_TechOil.Controllers
 
         [Authorize(Policy = "Admin")]
         [HttpPost]
+        [Route("Alta")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
 
@@ -81,7 +83,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <returns>actualizado o un 500</returns>
         [Authorize(Policy = "Admin")]
-        [HttpPut("{id}")]
+        [HttpPut("Modificar/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, RegisterDto dto)
         {
             var result = await _unitOfWork.UserRepository.Update(new User(dto, id));
@@ -103,7 +105,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <returns>Eliminado o un 500</returns>
         [Authorize(Policy = "Admin")]
-        [HttpDelete("{id}")]
+        [HttpPut("Eliminar/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var result = await _unitOfWork.UserRepository.Delete(id);

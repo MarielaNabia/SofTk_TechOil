@@ -25,7 +25,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <returns>Una respuesta HTTP que contiene la lista de projectos paginada.</returns>
         [HttpGet]
-        [Route("Project")]
+        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -52,7 +52,7 @@ namespace SofTk_TechOil.Controllers
         /// <returns>Una respuesta HTTP que contiene la lista de projectos activos.</returns>
 
         [HttpGet]
-        [Route("ServicesByEstado/{estado}")]
+        [Route("GetById/{estado}")]
         public async Task<IActionResult> GetEstadoProjects(EstadoTrabajo estado)
         {
             try
@@ -99,9 +99,9 @@ namespace SofTk_TechOil.Controllers
         /// <param name="dto">Datos del nuevo servicio.</param>
         /// <returns>Una respuesta HTTP que indica el resultado de la operación.</returns>
 
-        //[Authorize(Policy = "Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpPost]
-        [Route("NewProject")]
+        [Route("Alta")]
         public async Task<IActionResult> NewProject(AddProjectDto dto)
         {
             try
@@ -124,8 +124,8 @@ namespace SofTk_TechOil.Controllers
         /// <param name="id">ID del servicio a actualizar.</param>
         /// <param name="dto">Datos del servicio actualizado.</param>
         /// <returns>Una respuesta HTTP que indica el resultado de la operación.</returns>
-        //[Authorize(Policy = "Admin")]
-        [HttpPut("Editar/{id}")]
+        [Authorize(Policy = "Admin")]
+        [HttpPut("Modificar/{id}")]
         public async Task<IActionResult> UpdateAsync([FromRoute] int id, AddProjectDto dto)
         {
             try
@@ -158,7 +158,7 @@ namespace SofTk_TechOil.Controllers
         /// <param name="id">ID del servicio a eliminar.</param>
         /// <returns>Una respuesta HTTP que indica el resultado de la operación.</returns>
         [Authorize(Policy = "Admin")]
-        [HttpPut("DeleteLogico/{id}")]
+        [HttpPut("Eliminar/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try
