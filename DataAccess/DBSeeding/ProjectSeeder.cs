@@ -13,7 +13,7 @@ namespace SofTk_TechOil.DataAccess.DBSeeding
                      CodProyecto = 1,
                      Nombre = "Villa Carlos Paz III",
                      Direccion = "AV. Carcano 200, Cordoba",
-                     Estado = 1,
+                     Estado = EstadoTrabajo.Pendiente,
                      Activo = true
                  },
                  new Project
@@ -21,7 +21,7 @@ namespace SofTk_TechOil.DataAccess.DBSeeding
                      CodProyecto = 2,
                      Nombre = "Vaca Muerta",
                      Direccion = "Km 451, Rio Negro",
-                     Estado = 2,
+                     Estado = EstadoTrabajo.Confirmado,
                      Activo = true
                  },
                  new Project
@@ -29,7 +29,7 @@ namespace SofTk_TechOil.DataAccess.DBSeeding
                      CodProyecto = 3,
                      Nombre = "Sucursal 154",
                      Direccion = "Litoral 241, Rio Gallegos",
-                     Estado = 3,
+                     Estado = EstadoTrabajo.Terminado,
                      Activo = true
                  });
         }

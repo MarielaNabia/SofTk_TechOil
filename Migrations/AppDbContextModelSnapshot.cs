@@ -63,7 +63,7 @@ namespace SofTk_TechOil.Migrations
 
                     b.HasIndex("ServiceCodServicio");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("Jobs", (string)null);
 
                     b.HasData(
                         new
@@ -103,7 +103,7 @@ namespace SofTk_TechOil.Migrations
 
                     b.HasKey("CodProyecto");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
 
                     b.HasData(
                         new
@@ -157,7 +157,7 @@ namespace SofTk_TechOil.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
 
                     b.HasData(
                         new
@@ -199,7 +199,7 @@ namespace SofTk_TechOil.Migrations
 
                     b.HasKey("CodServicio");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
 
                     b.HasData(
                         new
@@ -267,7 +267,7 @@ namespace SofTk_TechOil.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new
