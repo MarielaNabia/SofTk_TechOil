@@ -25,6 +25,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <returns>Una respuesta HTTP que contiene la lista de projectos paginada.</returns>
         [HttpGet]
+        [Authorize(Policy = "AdminConsultor")]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
@@ -46,13 +47,13 @@ namespace SofTk_TechOil.Controllers
             }
         }
 
-        /// <summary>
-        /// Obtiene una lista de projectos activos.
+        //// <summary>
+        /// Obtiene proyectos por estado.
         /// </summary>
-        /// <returns>Una respuesta HTTP que contiene la lista de projectos activos.</returns>
-
-        [HttpGet]
-        [Route("GetById/{estado}")]
+        /// <param name="estado">Estado del proyecto (Pendiente, Confirmado o Terminado).</param>
+        /// <returns>Lista de proyectos que coinciden con el estado especificado.</returns>
+        [Authorize(Policy = "AdminConsultor")]
+        [HttpGet("GetByEstado/{estado}")]
         public async Task<IActionResult> GetEstadoProjects(EstadoTrabajo estado)
         {
             try
@@ -72,7 +73,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <param name="id">ID del servicio a obtener.</param>
         /// <returns>Una respuesta HTTP que contiene el servicio encontrado o un mensaje de not found.</returns>
-
+        [Authorize(Policy = "AdminConsultor")]
         [HttpGet("ProjectById/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
@@ -166,13 +167,14 @@ namespace SofTk_TechOil.Controllers
                 var result = await _unitOfWork.ProjectRepository.DeleteAsync(id);
                 await _unitOfWork.Complete();
 
-                if (result)
+                if (!result)
                 {
-                    return Ok(true);
+                    return ResponseFactory.CreateErrorResponse(500, "No se pudo eliminar el proyecto");
                 }
                 else
                 {
-                    return BadRequest("No se pudo eliminar el servicio.");
+                    await _unitOfWork.Complete();
+                    return ResponseFactory.CreateSuccessResponse(200, "Eliminado");
                 }
             }
             catch (Exception ex)

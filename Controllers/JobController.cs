@@ -24,6 +24,7 @@ namespace SofTk_TechOil.Controllers
         /// Obtiene una lista paginada de todos los trabajos.
         /// </summary>
         /// <returns>Una respuesta HTTP que contiene la lista de trabajos paginada.</returns>
+        [Authorize(Policy = "AdminConsultor")]
         [HttpGet]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
@@ -61,7 +62,7 @@ namespace SofTk_TechOil.Controllers
                 return ResponseFactory.CreateErrorResponse(500, $"Error al obtener la lista de trabajos: {ex.Message}");
             }
         }
-    
+
 
         /// <summary>
         /// Obtiene un trabajo por su ID.
@@ -69,6 +70,7 @@ namespace SofTk_TechOil.Controllers
         /// <param name="id">ID del trabajo a obtener.</param>
         /// <returns>Una respuesta HTTP que contiene el trabajo encontrado o un mensaje de not found.</returns>
 
+        [Authorize(Policy = "AdminConsultor")]
         [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
@@ -162,13 +164,14 @@ namespace SofTk_TechOil.Controllers
                 var result = await _unitOfWork.JobRepository.DeleteAsync(id);
                 await _unitOfWork.Complete();
 
-                if (result)
+                if (!result)
                 {
-                    return Ok(true);
+                    return ResponseFactory.CreateErrorResponse(500, "No se pudo eliminar el trabajo");
                 }
                 else
                 {
-                    return BadRequest("No se pudo eliminar el trabajo.");
+                    await _unitOfWork.Complete();
+                    return ResponseFactory.CreateSuccessResponse(200, "Eliminado");
                 }
             }
             catch (Exception ex)

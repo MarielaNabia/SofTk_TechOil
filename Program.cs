@@ -30,8 +30,11 @@ builder.Services.AddAuthorization(option =>
     option.AddPolicy("AdminConsultor", policy =>
 
     {
-        policy.RequireClaim(ClaimTypes.Role, "1");
-        policy.RequireClaim(ClaimTypes.Role, "2");
+        policy.RequireAssertion(context =>
+        {
+            return context.User.Claims.Any(claim =>
+                claim.Type == ClaimTypes.Role && (claim.Value == "1" || claim.Value == "2"));
+        });
 
     });
 });

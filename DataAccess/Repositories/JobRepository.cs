@@ -60,7 +60,8 @@ namespace SofTk_TechOil.DataAccess.Repositories
                     var jobToDelete = await _context.Jobs.FindAsync(id);
                     if (jobToDelete != null)
                     {
-                        _context.Jobs.Remove(jobToDelete);
+                        jobToDelete.Activo = false;
+                        _context.Jobs.Update(jobToDelete);
                         await _context.SaveChangesAsync();
                         return true;
                     }

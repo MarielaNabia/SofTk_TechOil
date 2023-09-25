@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SofTk_TechOil.Entities;
+using static SofTk_TechOil.Entities.Project;
 
 namespace SofTk_TechOil.DataAccess.DBSeeding
 {

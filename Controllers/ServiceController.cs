@@ -8,6 +8,7 @@ using SofTk_TechOil.Services;
 
 namespace SofTk_TechOil.Controllers
 {
+    [Authorize(Policy = "AdminConsultor")]
     [Route("[controller]")]
     [ApiController]
     public class ServiceController : ControllerBase
@@ -22,6 +23,7 @@ namespace SofTk_TechOil.Controllers
         /// Obtiene una lista paginada de todos los servicios.
         /// </summary>
         /// <returns>Una respuesta HTTP que contiene la lista de servicios paginada.</returns>
+        [Authorize(Policy = "AdminConsultor")]
         [HttpGet]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
@@ -48,7 +50,7 @@ namespace SofTk_TechOil.Controllers
         /// Obtiene una lista de servicios activos.
         /// </summary>
         /// <returns>Una respuesta HTTP que contiene la lista de servicios activos.</returns>
-
+        [Authorize(Policy = "AdminConsultor")]
         [HttpGet]
         [Route("GetActive")]
         public async Task<IActionResult> GetActiveServices()
@@ -70,7 +72,7 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <param name="id">ID del servicio a obtener.</param>
         /// <returns>Una respuesta HTTP que contiene el servicio encontrado o un mensaje de not found.</returns>
-
+        [Authorize(Policy = "AdminConsultor")]
         [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
@@ -164,13 +166,14 @@ namespace SofTk_TechOil.Controllers
                 var result = await _unitOfWork.ServiceRepository.DeleteAsync(id);
                 await _unitOfWork.Complete();
 
-                if (result)
+                if (!result)
                 {
-                    return Ok(true);
+                    return ResponseFactory.CreateErrorResponse(500, "No se pudo eliminar el servicio");
                 }
                 else
                 {
-                    return BadRequest("No se pudo eliminar el servicio.");
+                    await _unitOfWork.Complete();
+                    return ResponseFactory.CreateSuccessResponse(200, "Eliminado");
                 }
             }
             catch (Exception ex)

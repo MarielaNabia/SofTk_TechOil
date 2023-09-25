@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SofTk_TechOil.DataAccess.Repositories.Interfaces;
 using SofTk_TechOil.Entities;
+using static SofTk_TechOil.Entities.Project;
 
 namespace SofTk_TechOil.DataAccess.Repositories
 {
@@ -60,7 +61,8 @@ namespace SofTk_TechOil.DataAccess.Repositories
                 var projectToDelete = await _context.Projects.FindAsync(id);
                 if (projectToDelete != null)
                 {
-                    _context.Projects.Remove(projectToDelete);
+                    projectToDelete.Activo = false;  
+                    _context.Projects.Update(projectToDelete);
                     await _context.SaveChangesAsync();
                     return true;
                 }

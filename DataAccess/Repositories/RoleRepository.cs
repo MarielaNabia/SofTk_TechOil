@@ -12,7 +12,7 @@ namespace SofTk_TechOil.DataAccess.Repositories
 
         }
 
-        public override async Task<bool> Update(Role updateRole)
+        public override async Task<bool> UpdateAsync(Role updateRole)
         {
             var Role = await _context.Roles.FirstOrDefaultAsync(x => x.Id == updateRole.Id);
             if (Role == null) { return false; }
@@ -25,7 +25,7 @@ namespace SofTk_TechOil.DataAccess.Repositories
             return true;
         }
 
-        public override async Task<bool> Delete(int id)
+        public override async Task<bool> DeleteAsync(int id)
         {
             var Role = await _context.Roles.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (Role != null)

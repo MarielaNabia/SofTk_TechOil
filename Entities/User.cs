@@ -10,6 +10,7 @@ namespace SofTk_TechOil.Entities
     {                 
             public User()
             {
+            Activo = true;
             }
 
             public User(RegisterDto dto)
@@ -17,11 +18,13 @@ namespace SofTk_TechOil.Entities
                 CodUsuario = dto.CodUsuario;
                 Nombre = dto.Nombre;
                 DNI = dto.DNI;
-                RoleId = 2;
+                RoleId = dto.RoleId;
                 Password = PassEncryptHelper.CreatePass(dto.Password, dto.CodUsuario);
+                Activo = true;
             }
+       
 
-            public User(RegisterDto dto, int id)
+        public User(RegisterDto dto, int id)
             {
                 Id = id;
                 CodUsuario = dto.CodUsuario;
@@ -29,13 +32,15 @@ namespace SofTk_TechOil.Entities
                 DNI = dto.DNI;
                 RoleId = dto.RoleId;
                 Password = PassEncryptHelper.CreatePass(dto.Password, dto.CodUsuario);
+                Activo = true;
             }
 
-            [Key]
-            [Column("user_id")]
-            public int Id { get; set; }
-                              
-            public int CodUsuario { get; set; }
+        [Key]
+        [Column("user_id")]
+        public int Id { get; set; }
+
+
+        public int CodUsuario { get; set; }
 
             [Required]
             [StringLength(100)]
@@ -45,7 +50,7 @@ namespace SofTk_TechOil.Entities
             public int DNI { get; set; }
 
         
-            public bool Activo { get; set; } 
+            public bool Activo { get; set; }
         
             [Required]
             [Column("user_password", TypeName = "VARCHAR(250)")]
@@ -56,7 +61,8 @@ namespace SofTk_TechOil.Entities
             [Required]
             [Column("role_id")]
             public int RoleId { get; set; }
-
+            
+            [ForeignKey("RoleId")]
             public Role? Role { get; set; }
         
     }

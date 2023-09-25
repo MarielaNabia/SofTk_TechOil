@@ -12,7 +12,7 @@ namespace SofTk_TechOil.DataAccess.Repositories
         {
         }
 
-        public override async Task<bool> Update(User updateUser)
+        public override async Task<bool> UpdateAsync(User updateUser)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == updateUser.Id);
             if (user == null) { return false; }
@@ -20,18 +20,21 @@ namespace SofTk_TechOil.DataAccess.Repositories
             user.CodUsuario = updateUser.CodUsuario;
             user.Nombre = updateUser.Nombre;
             user.DNI = updateUser.DNI;
-            user.Password = updateUser.Password;
+            user.RoleId = updateUser.RoleId;
+            user.Activo = updateUser.Activo;
+            user.Password = PassEncryptHelper.CreatePass(updateUser.Password, updateUser.CodUsuario);
 
             _context.Users.Update(user);
             return true;
         }
 
-        public override async Task<bool> Delete(int id)
+        public override async Task<bool> DeleteAsync(int id)
         {
             var user = await _context.Users.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (user != null)
             {
-                _context.Users.Remove(user);
+                user.Activo = false;
+                _context.Users.Update(user);
             }
 
             return true;
@@ -42,9 +45,9 @@ namespace SofTk_TechOil.DataAccess.Repositories
             string encryptedPassword = PassEncryptHelper.CreatePass(dto.Password, dto.CodUsuario);
       
             return await _context.Users
-                //.Include(x => x.Role)
+                .Include(x => x.Role)
                 .SingleOrDefaultAsync(x => x.CodUsuario == dto.CodUsuario && x.Password == encryptedPassword);
-            //return await _context.Users.Include(x => x.Role).SingleOrDefaultAsync(x => x.CodUsuario == dto.CodUsuario && x.Password == PassEncryptHelper.CreatePass(dto.Password, dto.CodUsuario));
+           // return await _context.Users.Include(x => x.Role).SingleOrDefaultAsync(x => x.CodUsuario == dto.CodUsuario && x.Password == PassEncryptHelper.CreatePass(dto.Password, dto.CodUsuario));
         }
 
         public async Task<bool> UserEx(int CodUsuario)

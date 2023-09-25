@@ -61,7 +61,8 @@ namespace SofTk_TechOil.DataAccess.Repositories
                 var serviceToDelete = await _context.Services.FindAsync(id);
                 if (serviceToDelete != null)
                 {
-                    _context.Services.Remove(serviceToDelete);
+                    serviceToDelete.Activo = false;
+                    _context.Services.Update(serviceToDelete);
                     await _context.SaveChangesAsync();
                     return true;
                 }

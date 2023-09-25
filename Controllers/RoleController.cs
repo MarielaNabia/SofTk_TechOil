@@ -23,11 +23,12 @@ namespace SofTk_TechOil.Controllers
         ///  Obtengo todos los roles
         /// </summary>
         /// <returns>devuelde todos los roles</returns>
+        [Authorize(Policy = "AdminConsultor")]
         [HttpGet]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var roles = await _unitOfWork.RoleRepository.GetAll();
+            var roles = await _unitOfWork.RoleRepository.GetAllAsync();
             int pageToShow = 1;
             if (Request.Query.ContainsKey("page")) int.TryParse(Request.Query["page"], out pageToShow);
             var url = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}").ToString();
@@ -48,7 +49,7 @@ namespace SofTk_TechOil.Controllers
         {
 
             var Role = new Role(dto);
-            await _unitOfWork.RoleRepository.Insert(Role);
+            await _unitOfWork.RoleRepository.CreateAsync(Role);
             await _unitOfWork.Complete();
             return ResponseFactory.CreateSuccessResponse(200, "Ok.Se agrego el rol");
         }
@@ -62,7 +63,7 @@ namespace SofTk_TechOil.Controllers
         [HttpPut("Modificar/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, Role role)
         {
-            var result = await _unitOfWork.RoleRepository.Update(role);
+            var result = await _unitOfWork.RoleRepository.UpdateAsync(role);
 
             await _unitOfWork.Complete();
             return Ok(true);
@@ -76,7 +77,7 @@ namespace SofTk_TechOil.Controllers
         [HttpPut("Eliminar/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            var result = await _unitOfWork.RoleRepository.Delete(id);
+            var result = await _unitOfWork.RoleRepository.DeleteAsync(id);
             await _unitOfWork.Complete();
             return ResponseFactory.CreateSuccessResponse(200, "Ok.Se elimino el rol");
         }

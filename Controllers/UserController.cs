@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SofTk_TechOil.DTOs;
 using SofTk_TechOil.Entities;
 using SofTk_TechOil.Helper;
@@ -23,19 +24,27 @@ namespace SofTk_TechOil.Controllers
         ///  Devuelve todo los usuarios
         /// </summary>
         /// <returns>retorna todos los usuarios</returns>
-
+        [Authorize(Policy = "AdminConsultor")]
         [HttpGet]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var users = await _unitOfWork.UserRepository.GetAll();
+            var users = await _unitOfWork.UserRepository.GetAllAsync();
+            var usersDto = users.Select(j => new RegisterDto
+            {
+                CodUsuario=j.CodUsuario,
+                Nombre=j.Nombre,    
+                DNI=j.DNI,
+                Password =j.Password,
+                RoleId=j.RoleId
+            }).ToList();
             int pageToShow = 1;
 
             if (Request.Query.ContainsKey("page")) int.TryParse(Request.Query["page"], out pageToShow);
 
             var url = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}").ToString();
 
-            var paginateUsers = PaginateHelper.Paginate(users, pageToShow, url);
+            var paginateUsers = PaginateHelper.Paginate(usersDto, pageToShow, url);
 
             return ResponseFactory.CreateSuccessResponse(200, paginateUsers);
         }
@@ -45,10 +54,11 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <param name="id">El ID del usuario a obtener.</param>
         /// <returns>El usuario encontrado.</returns>
+        [Authorize(Policy = "AdminConsultor")]
         [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var user = await _unitOfWork.UserRepository.GetById(id);
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
 
             if (user == null)
             {
@@ -72,7 +82,7 @@ namespace SofTk_TechOil.Controllers
 
             if (await _unitOfWork.UserRepository.UserEx(dto.CodUsuario)) return ResponseFactory.CreateErrorResponse(409, $"Ya existe un usuario registrado con el usuario:{dto.CodUsuario}");
             var user = new User(dto);
-            await _unitOfWork.UserRepository.Insert(user);
+            await _unitOfWork.UserRepository.CreateAsync(user);
             await _unitOfWork.Complete();
 
             return ResponseFactory.CreateSuccessResponse(201, "Usuario registrado con exito!");
@@ -86,7 +96,8 @@ namespace SofTk_TechOil.Controllers
         [HttpPut("Modificar/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, RegisterDto dto)
         {
-            var result = await _unitOfWork.UserRepository.Update(new User(dto, id));
+
+            var result = await _unitOfWork.UserRepository.UpdateAsync(new User(dto, id));
 
             if (!result)
             {
@@ -105,10 +116,10 @@ namespace SofTk_TechOil.Controllers
         /// </summary>
         /// <returns>Eliminado o un 500</returns>
         [Authorize(Policy = "Admin")]
-        [HttpPut("Eliminar/{id}")]
+        [HttpPut("Baja/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            var result = await _unitOfWork.UserRepository.Delete(id);
+            var result = await _unitOfWork.UserRepository.DeleteAsync(id);
 
             if (!result)
             {
@@ -117,7 +128,7 @@ namespace SofTk_TechOil.Controllers
             else
             {
                 await _unitOfWork.Complete();
-                return ResponseFactory.CreateSuccessResponse(200, "ok.Actualizado");
+                return ResponseFactory.CreateSuccessResponse(200, "Eliminado");
             }
         }
 

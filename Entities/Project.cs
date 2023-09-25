@@ -2,6 +2,7 @@
 using SofTk_TechOil.DTOs;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace SofTk_TechOil.Entities
 {
@@ -45,12 +46,19 @@ namespace SofTk_TechOil.Entities
         [Required]
         public bool Activo { get; set; }
 
-        public virtual ICollection<Job> Jobs { get; set; }
+        //public virtual ICollection<Job> Jobs { get; set; }
+
+        public enum EstadoTrabajo
+        {
+            [EnumMember(Value = "Pendiente")]
+            Pendiente = 1,
+
+            [EnumMember(Value = "Confirmado")]
+            Confirmado = 2,
+
+            [EnumMember(Value = "Terminado")]
+            Terminado = 3
+        }
     }
-    public enum EstadoTrabajo
-    {
-        Pendiente = 1,
-        Confirmado = 2,
-        Terminado = 3
-    }
+    
 }
