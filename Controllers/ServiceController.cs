@@ -138,7 +138,7 @@ namespace SofTk_TechOil.Controllers
 
                 if (result)
                 {
-                    return Ok(true);
+                    return ResponseFactory.CreateSuccessResponse(201, "Actualizado con éxito");
                 }
                 else
                 {

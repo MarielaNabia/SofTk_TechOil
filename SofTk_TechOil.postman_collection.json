@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "7d8a992a-3ba2-4e76-8f40-3f1cb0906d15",
+		"name": "SofTk_TechOil",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29346091"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "jobs",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNaUFwcFN1YmplY3RDbGFpbSIsIm5hbWVpZCI6IjE2Iiwicm9sZSI6IjEiLCJuYmYiOjE2OTU2MDEzNzgsImV4cCI6MTY5NTYwNDk3OCwiaWF0IjoxNjk1NjAxMzc4fQ.4ZzTHvBCDzmtPj8wlik8xyVdHyi3FrMo-rersM9eY7Mwypo7KUl55vV1BN9XbgVzu-GSS0N8mDIMYTeXm4N8AA"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Job/GetAll"
+							},
+							"response": []
+						},
+						{
+							"name": "GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Job/GetById/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Modificar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "https://localhost:7255/Job/Modificar/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Borrado logico",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "https://localhost:7255/Job/Modificar/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Alta",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": "https://localhost:7255/Job/alta"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "services",
+					"item": [
+						{
+							"name": "Get all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Service/GetAll"
+							},
+							"response": []
+						},
+						{
+							"name": "GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Service/GetById/{id}"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Active",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Service/GetActive"
+							},
+							"response": []
+						},
+						{
+							"name": "Alta",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"descripcion\": \"service example\",\r\n  \"estado\": true,\r\n  \"valorHora\": 1800,\r\n  \"activo\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:7255/Service/Alta"
+							},
+							"response": []
+						},
+						{
+							"name": "Modificar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "https://localhost:7255/Job/Modificar/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Borrado logico",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "https://localhost:7255/Job/Modificar/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "projects",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Project/ProjectById/1"
+							},
+							"response": []
+						},
+						{
+							"name": "GetByStatus",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Project/GetByEstado/Terminado"
+							},
+							"response": []
+						},
+						{
+							"name": "Modificar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "https://localhost:7255/Job/Modificar/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Borrado logico",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "https://localhost:7255/Job/Modificar/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Alta",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": "https://localhost:7255/Job/alta"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/User/GetById/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Modificar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "https://localhost:7255/Job/Modificar/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Borrado logico",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "https://localhost:7255/Job/Modificar/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Alta",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": "https://localhost:7255/Job/alta"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"codUsuario\": 16,\r\n  \"password\": \"12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:7255/Login"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{TokenConsultor}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Consultor",
+			"item": [
+				{
+					"name": "jobs",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNaUFwcFN1YmplY3RDbGFpbSIsIm5hbWVpZCI6IjE2Iiwicm9sZSI6IjEiLCJuYmYiOjE2OTU2MDEzNzgsImV4cCI6MTY5NTYwNDk3OCwiaWF0IjoxNjk1NjAxMzc4fQ.4ZzTHvBCDzmtPj8wlik8xyVdHyi3FrMo-rersM9eY7Mwypo7KUl55vV1BN9XbgVzu-GSS0N8mDIMYTeXm4N8AA"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Job/GetAll"
+							},
+							"response": []
+						},
+						{
+							"name": "GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Job/GetById/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "services",
+					"item": [
+						{
+							"name": "Get all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Service/GetAll"
+							},
+							"response": []
+						},
+						{
+							"name": "GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Service/GetById/{id}"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Active",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Service/GetActive"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "projects",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Project/GetAll"
+							},
+							"response": []
+						},
+						{
+							"name": "GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Project/ProjectById/1"
+							},
+							"response": []
+						},
+						{
+							"name": "GetByStatus",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/Project/GetByEstado/Terminado"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:7255/User/GetById/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"codUsuario\": 16,\r\n  \"password\": \"12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:7255/Login"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{TokenConsultor}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TokenAdmin",
+			"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNaUFwcFN1YmplY3RDbGFpbSIsIm5hbWVpZCI6IjE2Iiwicm9sZSI6IjEiLCJuYmYiOjE2OTU2NzczNzcsImV4cCI6MTY5ODI2OTM3NiwiaWF0IjoxNjk1Njc3Mzc3fQ.yjqbJGm3r7xfkJomeKgoFOc8TifOsy7JIkK8NxywHvpSnaQJJnxU4iFZ6yyZl3NFSKafmq_73xNZ76qTW54-8w",
+			"type": "string"
+		},
+		{
+			"key": "TokenConsultor",
+			"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNaUFwcFN1YmplY3RDbGFpbSIsIm5hbWVpZCI6IjgiLCJyb2xlIjoiMiIsIm5iZiI6MTY5NTY5NDY2OSwiZXhwIjoxNjk4Mjg2NjY5LCJpYXQiOjE2OTU2OTQ2Njl9.FDMwJdDU053BLIlHpQ7cSMMpqlUc9z6JcGXwpY9IugXwuk0e2gSRYDVzQqQj54vsfpyPICIdt9sZEHGrIJ_1UA",
+			"type": "string"
+		}
+	]
+}
