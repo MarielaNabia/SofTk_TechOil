@@ -35,7 +35,7 @@ namespace SofTk_TechOil.Helper
                 {
                     Subject = new ClaimsIdentity(claims),
                     //Expires = System.DateTime.Now.AddDays(1),
-                    Expires = DateTime.UtcNow.AddMinutes(60),
+                    Expires = DateTime.UtcNow.AddDays(30),
                     SigningCredentials = creds
                 };
 

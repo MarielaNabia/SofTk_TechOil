@@ -101,7 +101,7 @@ namespace SofTk_TechOil.Controllers
 
             if (!result)
             {
-                return ResponseFactory.CreateErrorResponse(500, "No se pudo eliminar el usuario");
+                return ResponseFactory.CreateErrorResponse(500, "No se pudo modificar el usuario");
             }
             else
             {
