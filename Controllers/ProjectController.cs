@@ -90,7 +90,7 @@ namespace SofTk_TechOil.Controllers
             }
             catch (Exception ex)
             {
-                return ResponseFactory.CreateErrorResponse(500, $"Error al obtener el servicio por ID: {ex.Message}");
+                return ResponseFactory.CreateErrorResponse(500, $"Error al obtener el ID: {ex.Message}");
             }
         }
 
@@ -111,11 +111,11 @@ namespace SofTk_TechOil.Controllers
                 await _unitOfWork.ProjectRepository.CreateAsync(project);
                 await _unitOfWork.Complete();
 
-                return ResponseFactory.CreateSuccessResponse(201, "Servicio creado con éxito");
+                return ResponseFactory.CreateSuccessResponse(201, "Creado con éxito");
             }
             catch (Exception ex)
             {
-                return ResponseFactory.CreateErrorResponse(500, $"Error al crear el servicio: {ex.Message}");
+                return ResponseFactory.CreateErrorResponse(500, $"Error en el alta: {ex.Message}");
             }
         }
 
@@ -139,16 +139,16 @@ namespace SofTk_TechOil.Controllers
 
                 if (result)
                 {
-                    return Ok(true);
+                    return ResponseFactory.CreateSuccessResponse(201, "Modificado con éxito");
                 }
                 else
                 {
-                    return ResponseFactory.CreateErrorResponse(400, "No se pudo actualizar el servicio.");
+                    return ResponseFactory.CreateErrorResponse(400, "No se pudo actualizar.");
                 }
             }
             catch (Exception ex)
             {
-                return ResponseFactory.CreateErrorResponse(500, $"Error al actualizar el servicio: {ex.Message}");
+                return ResponseFactory.CreateErrorResponse(500, $"Error al actualizar: {ex.Message}");
             }
 
         }
@@ -179,7 +179,7 @@ namespace SofTk_TechOil.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error al eliminar el servicio: {ex.Message}");
+                return StatusCode(500, $"Error al eliminar: {ex.Message}");
             }
         }
 
