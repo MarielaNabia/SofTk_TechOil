@@ -34,7 +34,6 @@
 	- No se realizan cambios directamente en `master`. En su lugar, los cambios se integran a través de PRs desde `develop`.
 
 Este enfoque de gestión de ramas asegura un flujo de trabajo ordenado y la capacidad de rastrear el progreso y los cambios en cada característica o mejora. Facilita la colaboración efectiva entre los miembros del equipo y mantiene un control de versiones preciso.
-Puedes copiar y pegar este texto en el archivo README.md de tu repositorio en GitHub y se verá formateado correctamente.
 
 
 
